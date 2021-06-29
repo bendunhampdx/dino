@@ -3,11 +3,16 @@ const values = [1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 
 
 export class WordScore {
   constructor(word) {
-    this.word = word;
+    this.word = word.toUpperCase();
   }
   getValue () {
-    let pos = letters.indexOf(this.word);
-    let wordValue = values[pos];
+    const wordArray = this.word.split("");
+    let wordValue = 0;
+    wordArray.forEach((element) => {
+      const pos = letters.indexOf(element);
+      wordValue += values[pos];
+    });
+    
     return wordValue;
   }
 }
