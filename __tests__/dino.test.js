@@ -11,4 +11,9 @@ describe('WordScore', () => {
   let wordTest = new WordScore("Zalmoxes");
     expect(wordTest.getValue()).toEqual(26);
   });
+
+  // test('should pull a dino word from API', () => {
+  //   expect(newDino.toBeDefined()).toBeDefined();
+  // });
+
 });

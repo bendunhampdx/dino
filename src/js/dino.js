@@ -1,19 +1,34 @@
-const letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 const values = [1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10];
 
-export class WordScore {
+export default class WordScore {
   constructor(word) {
     this.word = word.toUpperCase();
   }
-  getValue () {
+  getValue() {
     const wordArray = this.word.split("");
     let wordValue = 0;
     wordArray.forEach((element) => {
       const pos = letters.indexOf(element);
       wordValue += values[pos];
     });
-    
+
     return wordValue;
+  }
+  static getDino() {
+    return new Promise(function (resolve, reject) {
+      let request = new XMLHttpRequest();
+      const url = `httP://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=1`;
+      request.onload = function () {
+        if (this.status === 200) {
+          resolve(request.response);
+        } else {
+          reject(request.response);
+        }
+      };
+      request.open("GET",url,true);
+      request.send();
+    });
   }
 }
 
